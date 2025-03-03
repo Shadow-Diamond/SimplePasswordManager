@@ -11,7 +11,7 @@ options = [1,2,3,4] # lower, capital, symbol, number
 # File information. Path example: Here/Is/My/Path/
 encryptor_path = ""
 password_path = ""
-encryptorName = "encryptor.bin"
+encryptorName = "encryption.bin"
 passwordFileName = "password.bin"
 
 def main(key):
@@ -63,12 +63,12 @@ def main(key):
                 for line in passwordFile:
                     decrypted = cipher.decrypt(line).decode()
                     splitArr = decrypted.split('||')
-                    splitArr = [splitArr[0], splitArr[1].split(' ')]
+                    splitArr = [splitArr[0], splitArr[1].split(': ')]
                     passwordArr.append(splitArr)
                 passwordFile.close()
             passwordArr.sort(key=lambda x: x[1][1])
             for item in passwordArr:
-                print(f"{item[0]} {item[1][0]} {item[1][1]}")
+                print(f"{item[0]} {item[1][0]}: {item[1][1]}")
 
         else: # If a password file does not exist
             print("Please import or add a password first.")
